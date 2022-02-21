@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PCSSD Home</title>
+</head>
+<body>
+<h1>PCSSD Chat Site</h1>
+<h3>Hi {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Guest - <a href="/login">login</a>/<a href="/signup">signup</a>{% endif %}!</h3>
+
+{% if current_user.is_authenticated %}
+    <h3>My rooms</h3>
+    <ul>
+        {% for room in rooms %}
+            <li><a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a></li>
+        {% endfor %}
+        <p><a href="/create-room">Create a room!</a></p>
+    </ul>
+{% endif %}
+</body>
+</html>
